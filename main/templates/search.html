@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airsoft Magazine - Barcelona</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+
+            <a href="{% url 'index' %}" style="color: white;"> <h1>Airsoft Magazine Barcelona</h1> </a>
+            <div id="searchContainer">
+
+                <form id="searchForm" action="{% url 'search' %}" method="GET">
+                    <div id="searchContainer">
+                        <input type="text" id="searchBar" name="query" placeholder="Buscar productos...">
+                        <button type="submit" id="searchSubmit"><i class="fa fa-search"></i> Buscar</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </header>
+    
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}    
+
+    <main>
+        
+        <button id="sortButton">Ordenar por precio</button>
+
+        <div id="parentProductos">
+
+            {% for source, products in data.items %}
+            {% for item in products %}
+                <!-- Item Producto -->
+                <div class="producto">
+                    <a href="{{ item.3 }}" itemprop="url" target="_blank">
+                        <div class="chollo" id="extra" style="display: none;">OFERTA!</div>
+                        <img src="{{ item.2 }}" alt="Imagen Producto">
+                        <h2>{{ item.0 }}</h2>
+                    </a>
+                    <a class="precio">{{ item.1 }} €</a>
+                </div>         
+                <!-- END Item Producto -->
+            {% endfor %}
+        {% endfor %}
+        
+        </div>
+    </main>
+</body>
+</html>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtén el botón de ordenar y el contenedor de productos
+        const sortButton = document.getElementById('sortButton');
+        const parentProductos = document.getElementById('parentProductos');
+        
+        let ascending = true;  // Variable para controlar el orden
+    
+        // Agrega un manejador de eventos para el clic en el botón
+        sortButton.addEventListener('click', function () {
+            // Obtén todos los productos
+            const productos = parentProductos.querySelectorAll('.producto');
+    
+            // Convierte los productos en un array
+            const productosArray = Array.from(productos);
+    
+            // Ordena los productos por precio
+            productosArray.sort(function (a, b) {
+                const precioA = parseFloat(a.querySelector('.precio').textContent);
+                const precioB = parseFloat(b.querySelector('.precio').textContent);
+                if (ascending) {
+                    return precioA - precioB;
+                } else {
+                    return precioB - precioA;
+                }
+            });
+    
+            // Elimina los productos del contenedor
+            productosArray.forEach(function (producto) {
+                parentProductos.removeChild(producto);
+            });
+    
+            // Agrega los productos ordenados al contenedor
+            productosArray.forEach(function (producto) {
+                parentProductos.appendChild(producto);
+            });
+    
+            // Cambia el texto del botón y el estado de orden
+            if (ascending) {
+                sortButton.textContent = 'Ordenar por precio (descendente)';
+            } else {
+                sortButton.textContent = 'Ordenar por precio (ascendente)';
+            }
+            ascending = !ascending;
+        });
+    });
+    </script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airsoft Magazine - Barcelona</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+    <style>
+        /* Estilo adicional para ocultar el formulario de registro inicialmente */
+        #register-container {
+            display: none;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+
+            <a href="{% url 'index' %}" style="color: white;"> <h1>Airsoft Magazine Barcelona</h1> </a>
+            <div id="searchContainer">
+
+                <form id="searchForm" action="{% url 'search' %}" method="GET">
+                    <div class="search-container"> <!-- Cambiado a clase "search-container" -->
+                        <input type="text" id="searchBar" name="query" placeholder="Buscar productos...">
+                        <button type="submit" id="searchSubmit"><i class="fa fa-search"></i> Buscar</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </header>
+    <main>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <!--Register--> 
+        <div class="container py-5">
+            <h1>Register</h1>
+            
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <label for="username">USUARIO</label>
+                <input type="text" name="username" id="username">
+
+                <label for="email">CORREO ELECTRÓNICO</label>
+                <input type="email" name="email" id="email">
+
+                <label for="password">CONTRASEÑA</label>
+                <input type="password" name="password" id="password">
+
+                <!-- Nuevo campo para el año de nacimiento -->
+                <label for="birth_year">AÑO DE NACIMIENTO</label>
+                <input type="number" name="birth_year" id="birth_year">
+
+                <button class="btn btn-primary" type="submit">Register</button>
+            </form>
+
+            <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+        </div>
+
+    </main>
+    
+</body>
+</html>

@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: white;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    background-color: rgb(29, 29, 29);
+    height: 10vh;
+    box-shadow: -2px 4px 4px 2px rgba(168, 0, 0, 1) ;
+    color: white;
+}
+
+.buscador, .titulo {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.buscador input {
+    border-radius: 25px 0 0 25px;
+    border: 0;
+    height: 40px;
+    width: 25vw;
+    padding-left: 5%;
+}
+
+.buscador button {
+    border-radius: 0 25px 25px 0;
+    border: 0;
+    width: 5vw;
+    color: white;
+    background-color: rgb(168, 2, 2);
+}
+
+.buscador button:hover {
+    background-color: rgb(168, 85, 85);
+    cursor: pointer;
+}
+
+.buscador nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.buscador nav a {
+    color: #DDF2D8;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.buscador nav a:first-child {
+    color: rgb(168, 0, 0);
+}
+
+.buscador nav a:hover {
+    color: rgb(168, 85, 85);
+    cursor: pointer;
+}
+
+#principal {
+    display: flex;
+    align-items: center;
+    background-color: rgb(226, 226, 226);
+}
+
+#filtro {
+    width: 15%;
+    position: fixed;
+    align-self: flex-start;
+    height: 80vh;
+}
+
+#productos {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+    border-left: 1px solid black;
+    margin-left: 15%;
+    min-height: 80vh;
+}
+
+.producto {
+    flex-basis: calc(20% - 2%); /* 5 productos en una fila */
+    height: 30%;
+    text-align: center;
+    margin: 1%;
+}
+
+.producto img {
+    width: 80%;
+}
+
+footer {
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 10vh;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5) inset;
+}
+
+#redes {
+    width: 20vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#redes a {
+    padding: 0 2% 0 2%;
+}
+
+#redes img {
+    height: 4vh;
+    width: 4vh;
+}
+
+

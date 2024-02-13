@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airsoft Magazine - Barcelona</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="titulo">
+            <h1>Airsoft Magazine Barcelona</h1>
+        </div>
+        <div class="buscador">
+            <nav>
+                <a href="{% url 'index' %}">Home</a>
+                <a href="#">Blog</a>
+                <a href="#" alt="Iniciar Sesion"><i class="fa-solid fa-circle-user"></i></a>
+            </nav>
+        </div>
+    </header>
+    <section id="inicio">
+        <div id="fondoInicio">
+            <div id="titulo">
+                
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <H2>Airsoft Magazine Barcelona</H2>
+            </div>
+            <div id="buscar">
+                <a href="#">Hacer una busqueda</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div id="">
+            <h2>Airsoft Magazine Barcelona</h2>
+        </div>
+        <div id="redes">
+            <h3>CONTACTANOS</h3>
+            <!-- <a href="#"><img src="{% static 'images/square-instagram.svg' %}" alt="Instagram"></a> -->
+            <a href="https://www.facebook.com/groups/2916154601881920"><img src="{% static 'images/square-facebook.svg' %}" alt="Facebook"></a>
+            <!-- <a href="#"><img src="{% static 'images/square-tiktok.svg' %}" alt="TikTok"></a> -->
+        </div>
+    </footer>
+</body>
+</html>

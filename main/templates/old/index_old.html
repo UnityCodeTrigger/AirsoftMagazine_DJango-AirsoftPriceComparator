@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airsoft Magazine - Barcelona</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+
+            <a href="{% url 'index' %}" style="color: white;"> <h1>Airsoft Magazine Barcelona</h1> </a>
+            <div id="searchContainer">
+                
+                <form id="searchForm" action="{% url 'search' %}" method="GET">
+                    <div id="searchContainer">
+                        <input type="text" id="searchBar" name="query" placeholder="Buscar productos...">
+                        <button type="submit" id="searchSubmit"><i class="fa fa-search"></i> Buscar</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </header>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <main>
+        <div id="parentProductos">
+            
+            <div>
+            <h2 style="display: flex; text-align: left;">Bienvenidos a Airsoft Magazine</h2>
+                <nav style="display: flex; flex-direction: column;">
+                    <ul>
+                        <a href="#">    <li>Buscador</li>           </a>
+                        <a href="#">    <li>Noticias</li>           </a>
+                        <a href="#">    <li>Nuevos eventos</li>     </a>
+                        <a href="#">    <li>Tiendas</li>            </a>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
